@@ -25,4 +25,5 @@ class BlogModel(models.Model):
     class Meta:
         verbose_name = 'blog'
         verbose_name_plural = 'blogs'
+        ordering = ('-id',)
 

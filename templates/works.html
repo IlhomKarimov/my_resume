@@ -1,0 +1,75 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+    <header>
+    <section class="slick">
+        <div class="box one-time">
+            <div class="item">
+                <img src="{% static 'main/img/sites/braunn.png' %}" alt="">
+                <h2>Braun Haircut Machine Site</h2>
+            </div>
+            <div class="item">
+                <img src="{% static 'main/img/sites/reebok.svg' %}" alt="">
+                <h2>Reebok Outfit and Clothes Shop</h2>
+            </div>
+            <div class="item">
+                <img src="{% static 'main/img/sites/seo.png' %}" alt="">
+                <h2>SEO Flow Marketing Site</h2>
+            </div>
+            <div class="item">
+                <img src="{% static 'main/img/sites/woman_new_collection.svg' %}" alt="">
+                <h2>Women and Kids Store</h2>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="thworks">
+        <div class="thirth">
+            <h1>Other Works</h1>
+            {% for object in object_list %}
+                <div class="news">
+                    <div class="triangle">
+                        <img src="{{ object.image.url }}" alt="" width="300" height="200">
+                        <div>
+                            <a href="{% url 'work-detail' pk=object.pk %}">{{ object.title }}</a>
+                            <div class="date">
+                                <div class="boxx">
+                                    <p>{{ object.created_at|date:"Y" }}</p>
+                                </div>
+                                {% for cat in object.category.all %}
+                                    <h2>{{ cat.name }}</h2>
+                                {% endfor %}
+                            </div>
+                            <p>
+                                {{ object.body|safe|truncatewords:'10' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+
+        </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block extra_js %}
+    <script>
+        var nav = document.querySelector('nav');
+
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset > 100) {
+                nav.classList.add('bg-light', 'shadow');
+            } else {
+                nav.classList.remove('bg-light', 'shadow');
+            }
+        });
+    </script>
+
+    <script>
+
+    </script>
+{% endblock %}
